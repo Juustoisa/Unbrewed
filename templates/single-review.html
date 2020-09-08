@@ -7,19 +7,27 @@
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
                 <div class="form-style">
-                    <form action="/frontpage">
+                    <form action="/browse">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h6 style="color: antiquewhite; text-align: center;"> Most recent reviews by our users,<br>click to see the review</h6>
-                    {% for review in reviews %}
+                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -25px; margin-top: -20px;">
+                        <br>Tea name: {{ targetreview[0][1] }}</h4>
+                        <h5 style="color: antiquewhite; text-align: center; margin-top: -25px;">
+                            <br>Review by: {{ targetuser[0][0] }}</h5>
+                            <h6 style="color: antiquewhite; text-align: center;">
+                        <br>From shop: {{ targetreview[0][2] }}
+                        <br>Tea type: {{ targetreview[0][3] }}
+                        <br>Score {{ targetreview[0][4] }} / 10
+                        <br>Review: {{ targetreview[0][5] }}</h6>
                     
-                    <h4  style="color: antiquewhite"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>Tea: {{ review[1] }} Rated: {{ review[2] }} / 10</a></h4>
-                    {% endfor %}
+                    
+                    
+                    
                 </div>
           
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">Login to browse the reviews.</h2>
+                <h2 style="color: antiquewhite">Login to see this review.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

@@ -16,6 +16,11 @@ def login(username,password):
         else:
             return False
 
+def get_one(id):
+    sql = "SELECT username FROM users Where id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()
+
 def logout():
     del session["user_id"]
     del session["user_name"]

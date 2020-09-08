@@ -26,6 +26,16 @@
                         <p style="color: antiquewhite">Password:<br>
                         <input class="form-control input-sm" type="password" name="password"></p>
                         <button class="nicer-button" type="submit" value="Login">Login</button>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <li style="color: rgb(255, 0, 0); padding-top: 5px;">{{ message }}</li>
+                            {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                        </ul>
                     </form>
                 </div>
             {% endif %}

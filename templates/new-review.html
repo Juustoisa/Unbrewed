@@ -7,29 +7,32 @@
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
                 <div class="form-style">
+                    <form action="/frontpage">
+                        <button class="nicer-button" type="submit">Return</button>
+                    </form>
                     <h2 style="color: antiquewhite; text-align: center;">Post a new review!</h2>
                     <h6 style="color: antiquewhite; text-align: center;"> Fields marked with * are mandatory</h6>
 
                     <form action="/newreview" method="POST">
                         <p style="color: antiquewhite">*Tea name:<br>
-                        <input class="form-control input-sm" type="text" name="teaname" minlength="4"></p>
+                        <input class="form-control input-sm" type="text" name="teaname" minlength="4" required></p>
                         </br>
                         <p style="color: antiquewhite; margin-top: -30px; margin-bottom: -15px;">Link to shop:<br>
                             <input class="form-control input-sm" type="url" name="shop"></p>
                         </br>
                         <label style="color: antiquewhite; margin-top: -20px;">*Choose tea type:</label>
-                        <select name="teatype" id="teatype">
+                        <select required name="teatype" id="teatype">
                             <option value=""></option>
-                            <option value="green">Green Tea</option>
-                            <option value="black">Black Tea</option>
-                            <option value="puerh">Pu-erh Tea</option>
-                            <option value="oolong">Oolong Tea</option>
-                            <option value="while">White Tea</option>
-                            <option value="other">Other/Herbal</option>
+                            <option value="Green Tea">Green Tea</option>
+                            <option value="Black Tea">Black Tea</option>
+                            <option value="Pu-erh Tea">Pu-erh Tea</option>
+                            <option value="Oolong Tea">Oolong Tea</option>
+                            <option value="White Tea">White Tea</option>
+                            <option value="Other Tea">Other/Herbal</option>
                         </select>
                     </br>
                         <label style="color: antiquewhite">*Score 1-10:</label>
-                        <select name="score" id="score">
+                        <select required name="score" id="score">
                             <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -63,7 +66,7 @@
           
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">You need to login to view the site!</h2>
+                <h2 style="color: antiquewhite">You need to login to post reviews.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

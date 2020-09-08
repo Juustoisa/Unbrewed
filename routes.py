@@ -10,6 +10,14 @@ def index():
 def frontpage():
     return render_template("front-page.html")
 
+@app.route("/reviews/<int:id>")
+def singlereview(id):
+    target = review.get_one(id)
+    if not target:
+        return redirect("/")
+    targetuser = user.get_one(target[0][6])
+    return render_template("single-review.html", targetreview=target, targetuser=targetuser)
+
 @app.route("/newreview", methods=["get","post"])
 def newreview():
     if request.method == "GET":
@@ -23,8 +31,8 @@ def newreview():
         if review.send(name, teatype, score, shop, reviewtext):
             return redirect("/frontpage")
         else:
-            flash("Unable to post review, mandatory parts missing.")
-            return redirect("/newreview")
+            flash("Unable to post review, check mandatory info.")
+        return redirect("/newreview")
 
 @app.route("/browse")
 def browse():
@@ -58,10 +66,15 @@ def login():
     if user.login(username,password):
             return redirect("/frontpage")
     else:
-            return render_template("index.html")
+        flash('Wrong username or password')
+        return render_template("index.html")
 
 @app.route("/logout")
 def logout():
     del session["user_name"]
     del session["user_id"]
+    return redirect("/")
+
+@app.errorhandler(404)
+def backup(e):
     return redirect("/")
