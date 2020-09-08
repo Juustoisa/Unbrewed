@@ -1,0 +1,30 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/custom.css">
+<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-6">
+            {% if session.user_id %}
+                <div class="form-style">
+                    <p style="color: antiquewhite">Logged in as {{ session.user_name }}, welcome!</p>
+                    <form action="/logout">
+                        <button class="nicer-button" type="submit">Log out</button>
+                    </form>
+                    <form action="/newreview">
+                        <button class="nicer-button" type="submit">Post a new review</button>
+                    </form>
+                </div>
+          
+            {% else %}
+            <div class="form-style">
+                <h2 style="color: antiquewhite">You need to login to view the site!</h2>
+                <form action="/">
+                    <button class="nicer-button" type="submit">To login</button>
+                </form>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

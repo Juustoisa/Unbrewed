@@ -1,0 +1,42 @@
+.page-holder {
+  min-height: 80vh;
+  min-width: 80vh;
+}
+
+.bg-image {
+  background-size: cover !important;
+}
+
+.form-style{
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #304e30;
+	padding: 20px;
+	background: #304e30;
+	box-shadow: inset 0px 0px 15px #179681;
+	-moz-box-shadow: inset 0px 0px 15px #179681;
+  -webkit-box-shadow: inset 0px 0px 15px #179681;
+  opacity: 85%;
+  width: auto;
+}
+
+.nicer-button{
+  color: rgb(3, 92, 0);
+  text-transform: uppercase;
+  background: antiquewhite;
+  padding: 10px;
+  border-radius: 30px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
+
+.nicer-button:hover {
+  text-shadow: 0px 0px 20px rgb(0, 0, 0);
+  box-shadow: inset 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}

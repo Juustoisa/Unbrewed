@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/custom.css">
+<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-6">
+            {% if session.username %}
+                <div class="form-style">
+                    <p style="color: antiquewhite">Logged in as {{ session.username }}, welcome!</p>
+                    <form action="/logout">
+                        <button class="nicer-button" type="submit">Log out</button>
+                    </form>
+                </div>
+          
+            {% else %}
+                <div class="form-style">
+                    <h2 style="color: antiquewhite; text-align: center;">Welcome to Unbrewed!</h2>
+                    <h3 style="color: antiquewhite">Login</h3> <p style="color: antiquewhite">or</p>
+                    <form action="/register">
+                        <button class="nicer-button" type="submit" value="Register">Create account</button>
+                    </form>
+                    <form action="/login" method="POST">
+                        <p style="color: antiquewhite">Username:<br>
+                        <input class="form-control input-sm" type="text" name="username"></p>
+                        <p style="color: antiquewhite">Password:<br>
+                        <input class="form-control input-sm" type="password" name="password"></p>
+                        <button class="nicer-button" type="submit" value="Login">Login</button>
+                    </form>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

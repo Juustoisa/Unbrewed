@@ -1,0 +1,28 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/custom.css">
+<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-6">
+            {% if session.user_id %}
+                <div class="form-style">
+                    <h6 style="color: antiquewhite; text-align: center;"> Most recent reviews by our users,<br>click to see the review</h6>
+                    {% for review in reviews %}
+                    
+                    <h4 style="color: antiquewhite">Tea: {{ review[1] }} Rated: {{ review[2] }} / 10</h4>
+                    {% endfor %}
+                </div>
+          
+            {% else %}
+            <div class="form-style">
+                <h2 style="color: antiquewhite">Login to browse the reviews.</h2>
+                <form action="/">
+                    <button class="nicer-button" type="submit">To login</button>
+                </form>
+            </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

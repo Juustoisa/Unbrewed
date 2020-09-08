@@ -1,0 +1,49 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/custom.css">
+<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-10 col-md-8 col-lg-6">
+                <div class="form-style">
+                    <h3 style="color: antiquewhite">Create an account to explore the site!</h3>
+                    <form action="/">
+                        <button class="nicer-button" type="submit">Return to Login</button>
+                    </form>
+
+                    <form action="/register" method="POST" onsubmit="return check(this)">
+                        <p style="color: antiquewhite">Username (6-20 characters):<br>
+                        <input class="form-control input-sm" type="text" name="username"></p>
+                        <p style="color: antiquewhite">Password (6+ characters):<br>
+                        <input class="form-control input-sm" type="password" name="password"></p>
+                        <button class="nicer-button" type="submit">Create account</button>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <li style="color: rgb(255, 0, 0); padding-top: 5px;">{{ message }}</li>
+                            {% endfor %}
+                            </ul>
+                            {% endif %}
+                            {% endwith %}
+                        </ul>
+                    </form>
+                    <script>
+                        function check(form){
+                            if(form.username.value.length < 6 || form.username.value.length > 20){
+                                alert("Username doesn't fit length criteria.")
+                                return false;
+                            }
+                            if(form.password.value.length < 6){
+                                alert("Chosen password too short.")
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
