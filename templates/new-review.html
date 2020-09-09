@@ -46,11 +46,18 @@
                             <option value="10">10</option>
                         </select>
                     </br>
+                    
                     <label style="color: antiquewhite">Review:</label>
                 </br>
-                    <textarea name="reviewtext" style="margin-bottom: 10px;resize: none;" rows="5" class="form-control input-sm" name="review" id="review" maxlength="300" ></textarea>
-                        <button class="nicer-button" type="submit">Post review</button>
-
+                    <textarea name="reviewtext" style="margin-bottom: 10px;resize: none;" rows="5" class="form-control input-sm" name="review" id="review" maxlength="600" ></textarea>
+                    {% for i in range(0,  rnumber ) %}
+                    <button hidden></button>
+                    {% endfor %}
+                    <button class="nicer-button" type="submit">Post review</button>
+                    {% for i in range(0,  rnumber ) %}
+                    <button hidden></button>
+                    {% endfor %}
+                    
                         {% with messages = get_flashed_messages() %}
                         {% if messages %}
                         <ul class=flashes>

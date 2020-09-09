@@ -1,6 +1,7 @@
 from app import app
 from flask import redirect, render_template, request, session, flash
 import user, review
+import random
 
 @app.route("/")
 def index():
@@ -21,7 +22,7 @@ def singlereview(id):
 @app.route("/newreview", methods=["get","post"])
 def newreview():
     if request.method == "GET":
-        return render_template("new-review.html")
+        return render_template("new-review.html", rnumber=random.randint(2,9))
     if request.method == "POST":
         name = request.form["teaname"]
         teatype = request.form["teatype"]

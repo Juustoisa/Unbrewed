@@ -10,7 +10,7 @@
                     <form action="/frontpage">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h6 style="color: antiquewhite; text-align: center;"> Most recent reviews by our users,<br>click to see the review</h6>
+                    <h6 style="color: antiquewhite; text-align: center;"> 10 most recent reviews by our users,<br>click to see the review</h6>
                     {% for review in reviews %}
                     
                     <h4  style="color: antiquewhite"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>Tea: {{ review[1] }} Rated: {{ review[2] }} / 10</a></h4>

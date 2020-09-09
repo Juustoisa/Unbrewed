@@ -1,8 +1,9 @@
 from db import db
 import user
 
+
 def get_list():
-    sql = "SELECT R.id, R.name, R.score FROM reviews R ORDER BY r.id DESC"
+    sql = "SELECT R.id, R.name, R.score FROM reviews R ORDER BY r.id DESC LIMIT 10"
     result = db.session.execute(sql)
     return result.fetchall()
 
@@ -13,6 +14,7 @@ def get_one(id):
 
 def send(name, teatype, score, shop, reviewtext):
     user_id = user.user_id()
+
     if user_id == 0:
         return False
     if not name or not teatype or not score:
