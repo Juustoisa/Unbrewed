@@ -10,6 +10,7 @@ CREATE TABLE reviews (
     teatype VARCHAR(15),
     score INTEGER,
     reviewtext VARCHAR(601),
+    picture_url VARCHAR(512),
     user_id INTEGER REFERENCES users
 );
     

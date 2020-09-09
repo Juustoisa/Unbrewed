@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
-<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-    <div class="container h-100">
+<body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+
+    
+    <div style=" padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
@@ -23,12 +26,12 @@
                         <label style="color: antiquewhite; margin-top: -20px;">*Choose tea type:</label>
                         <select required name="teatype" id="teatype">
                             <option value=""></option>
-                            <option value="Green Tea">Green Tea</option>
                             <option value="Black Tea">Black Tea</option>
-                            <option value="Pu-erh Tea">Pu-erh Tea</option>
+                            <option value="Green Tea">Green Tea</option>
                             <option value="Oolong Tea">Oolong Tea</option>
-                            <option value="White Tea">White Tea</option>
                             <option value="Other Tea">Other/Herbal</option>
+                            <option value="Pu-erh Tea">Pu-erh Tea</option>
+                            <option value="White Tea">White Tea</option>
                         </select>
                     </br>
                         <label style="color: antiquewhite">*Score 1-10:</label>
@@ -50,14 +53,16 @@
                     <label style="color: antiquewhite">Review:</label>
                 </br>
                     <textarea name="reviewtext" style="margin-bottom: 10px;resize: none;" rows="5" class="form-control input-sm" name="review" id="review" maxlength="600" ></textarea>
-                    {% for i in range(0,  rnumber ) %}
-                    <button hidden></button>
+
+                    <p style="color: antiquewhite;">Picture-url:<br>
+                        <input class="form-control input-sm" type="url" name="picture"></p>
+                    {% for i in range(0,  rnumber ) %} 
+                    <button hidden class="nicer-button" >Post review</button>
                     {% endfor %}
                     <button class="nicer-button" type="submit">Post review</button>
-                    {% for i in range(0,  rnumber ) %}
-                    <button hidden></button>
+                    {% for i in range(0,  rnumber ) %} 
+                    <button hidden class="nicer-button" >Post review</button>
                     {% endfor %}
-                    
                         {% with messages = get_flashed_messages() %}
                         {% if messages %}
                         <ul class=flashes>
@@ -82,4 +87,5 @@
             </div>
         </div>
     </div>
-</div>
+
+</body>

@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
-<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-    <div class="container h-100">
+<body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+
+    
+    <div style=" padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
@@ -15,11 +18,12 @@
                         <h5 style="color: antiquewhite; text-align: center; margin-top: -25px;">
                             <br>Review by: {{ targetuser[0][0] }}</h5>
                             <h6 style="color: antiquewhite; text-align: center;">
+                            <img style="display: block;margin-left: auto;margin-right: auto;"src="{{ targetreview[0][6]}}" width="350" height="350">
                         <br>From shop: <a href='{{ targetreview[0][2] }}'> {{ targetreview[0][2] }}</a>
                         <br>Tea type: {{ targetreview[0][3] }}
                         <br>Score {{ targetreview[0][4] }} / 10
                         <br>Review: {{ targetreview[0][5] }}</h6>
-                    
+                            
                     
                     
                     
@@ -37,3 +41,4 @@
         </div>
     </div>
 </div>
+</body>

@@ -1,21 +1,27 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
-<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-    <div class="container h-100">
+<body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+
+    
+    <div style=" padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
                 <div class="form-style">
-                    <p style="color: antiquewhite">Logged in as {{ session.user_name }}, welcome!</p>
+                    <h4 style="color: antiquewhite">Logged in as {{ session.user_name }}, welcome!</h4>
+                    <br>
                     <form action="/logout">
-                        <button class="nicer-button" type="submit">Log out</button>
+                        <button style="margin: 20;" class="nicer-button" type="submit">Log out</button>
                     </form>
+                    <br>
                     <form action="/browse">
-                        <button class="nicer-button" type="submit">Browse reviews</button>
+                        <button style="margin: 20;" class="nicer-button" type="submit">Browse reviews</button>
                     </form>
+                    <br>
                     <form action="/newreview">
-                        <button class="nicer-button" type="submit">Post a new review</button>
+                        <button style="margin: 20;" class="nicer-button" type="submit">Post a new review</button>
                     </form>
                 </div>
           
@@ -31,3 +37,4 @@
         </div>
     </div>
 </div>
+</body>

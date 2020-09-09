@@ -16,20 +16,21 @@ def singlereview(id):
     target = review.get_one(id)
     if not target:
         return redirect("/")
-    targetuser = user.get_one(target[0][6])
+    targetuser = user.get_one(target[0][7])
     return render_template("single-review.html", targetreview=target, targetuser=targetuser)
 
 @app.route("/newreview", methods=["get","post"])
 def newreview():
-    if request.method == "GET":
-        return render_template("new-review.html", rnumber=random.randint(2,9))
+    if request.method == "GET": # random used to generate random number of invisible buttons for very simple spam protection.
+        return render_template("new-review.html", rnumber=random.randint(1,15))
     if request.method == "POST":
         name = request.form["teaname"]
         teatype = request.form["teatype"]
         score = request.form["score"]
         shop = request.form["shop"]
         reviewtext = request.form["reviewtext"]
-        if review.send(name, teatype, score, shop, reviewtext):
+        picture_url = request.form["picture"]
+        if review.send(name, teatype, score, shop, reviewtext, picture_url):
             return redirect("/frontpage")
         else:
             flash("Unable to post review, check mandatory info.")

@@ -14,12 +14,13 @@
 	margin: 0px 0px 10px 0px;
 	border: 1px solid #304e30;
 	padding: 20px;
-	background: #304e30;
+	background: #304e30d0;
 	box-shadow: inset 0px 0px 15px #179681;
 	-moz-box-shadow: inset 0px 0px 15px #179681;
   -webkit-box-shadow: inset 0px 0px 15px #179681;
-  opacity: 85%;
+  
   width: auto;
+  height: auto;
 }
 
 .nicer-button{

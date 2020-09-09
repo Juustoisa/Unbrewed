@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
-<div style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-    <div class="container h-100">
+<body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
+
+    
+    <div style=" padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
@@ -13,7 +16,7 @@
                     <h6 style="color: antiquewhite; text-align: center;"> 10 most recent reviews by our users,<br>click to see the review</h6>
                     {% for review in reviews %}
                     
-                    <h4  style="color: antiquewhite"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>Tea: {{ review[1] }} Rated: {{ review[2] }} / 10</a></h4>
+                    <h4  style="color: antiquewhite"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>{{ review[1] }} Rated: {{ review[2] }} / 10</a></h4>
                     {% endfor %}
                 </div>
           
@@ -29,3 +32,4 @@
         </div>
     </div>
 </div>
+</body>
