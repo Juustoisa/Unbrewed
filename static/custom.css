@@ -23,6 +23,103 @@
   height: auto;
 }
 
+.greentea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #304e30;
+	padding: 10px;
+	background: #28a328b7;
+	box-shadow: inset 0px 0px 15px #2ea300;
+	-moz-box-shadow: inset 0px 0px 15px #2ea300;
+  -webkit-box-shadow: inset 0px 0px 15px #2ea300;
+  
+  width: auto;
+  height: auto;
+}
+
+.blacktea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #464646;
+	padding: 10px;
+	background: #181a18b7;
+	box-shadow: inset 0px 0px 15px #000000;
+	-moz-box-shadow: inset 0px 0px 15px #000000;
+  -webkit-box-shadow: inset 0px 0px 15px #000000;
+  
+  width: auto;
+  height: auto;
+}
+
+.Oolongtea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #774000;
+	padding: 10px;
+	background: #5f3600b7;
+	box-shadow: inset 0px 0px 15px #000000;
+	-moz-box-shadow: inset 0px 0px 15px #000000;
+  -webkit-box-shadow: inset 0px 0px 15px #000000;
+  
+  width: auto;
+  height: auto;
+}
+
+.Othertea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #04855e;
+	padding: 10px;
+	background: #20aa98b7;
+	box-shadow: inset 0px 0px 15px #000000;
+	-moz-box-shadow: inset 0px 0px 15px #000000;
+  -webkit-box-shadow: inset 0px 0px 15px #000000;
+  
+  width: auto;
+  height: auto;
+}
+
+
+.Puerhtea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #857804;
+	padding: 10px;
+	background: #978b22b7;
+	box-shadow: inset 0px 0px 15px #000000;
+	-moz-box-shadow: inset 0px 0px 15px #000000;
+  -webkit-box-shadow: inset 0px 0px 15px #000000;
+  
+  width: auto;
+  height: auto;
+}
+
+.Whitetea{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #C0C0C0;
+	padding: 10px;
+	background: #faf9f0b7;
+	box-shadow: inset 0px 0px 15px #000000;
+	-moz-box-shadow: inset 0px 0px 15px #000000;
+  -webkit-box-shadow: inset 0px 0px 15px #000000;
+  
+  width: auto;
+  height: auto;
+}
+
 .nicer-button{
   color: rgb(3, 92, 0);
   text-transform: uppercase;

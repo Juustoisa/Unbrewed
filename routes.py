@@ -15,7 +15,7 @@ def frontpage():
 def singlereview(id):
     target = review.get_one(id)
     if not target:
-        return redirect("/")
+        return redirect("/browse")
     targetuser = user.get_one(target[0][7])
     return render_template("single-review.html", targetreview=target, targetuser=targetuser)
 
@@ -52,7 +52,18 @@ def browse():
         list = review.get_search(chosentype,minscore)
         return render_template("browse.html", reviews=list)
 
+@app.route("/users",methods=["get","post"])
+def users():
+    if request.method == "GET":
+        list=user.get_list()
+        return render_template("users.html", users=list)
 
+@app.route("/users/<int:id>")
+def profile(id):
+    target=user.get_profile(id)
+    if not target:
+        return render_template("profile.html", targetuser=target)
+    return render_template("profile.html", targetuser=target)
 
 @app.route("/register", methods=["get","post"])
 def register():
