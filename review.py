@@ -7,6 +7,12 @@ def get_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_search(chosentype,minscore):
+    sql = "SELECT R.id, R.name, R.score FROM reviews R WHERE R.teatype IN :chosentype AND R.score >= :minscore ORDER BY r.id DESC"
+    result = db.session.execute(sql, {"chosentype":chosentype, "minscore":minscore})
+    return result.fetchall()
+
+
 def get_one(id):
     sql = "SELECT * FROM reviews Where id=:id"
     result = db.session.execute(sql, {"id":id})

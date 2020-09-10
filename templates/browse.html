@@ -7,16 +7,50 @@
     
     <div style=" padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-10 col-md-8 col-lg-6">
+            <div class="col-10 col-md-10 col-lg-7">
             {% if session.user_id %}
                 <div class="form-style">
                     <form action="/frontpage">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h6 style="color: antiquewhite; text-align: center;"> 10 most recent reviews by our users,<br>click to see the review</h6>
+                    <h6 style="color: antiquewhite; text-align: center;"> 10 most recent reviews by our users,<br>click to see the review or search the reviews.</h6>
+                    <!--Search functionality-->
+                    <span id="showsearch" style="display: none;">
+                    <form action="/browse" method="POST">
+                        <p style="color: antiquewhite">Choose type:<br>
+                        <input type="checkbox" name="teatype" id="teatype" value="Black Tea">Black Tea
+                            <input type="checkbox" name="teatype" value="Green Tea">Green Tea
+                            <input type="checkbox" name="teatype" value="Oolong Tea">Oolong Tea
+                            <input type="checkbox" name="teatype" value="Other Tea">Other/Herbal
+                            <input type="checkbox" name="teatype" value="Pu-erh Tea">Pu-erh Tea
+                            <input type="checkbox" name="teatype" value="White Tea">White Tea
+                            <br>
+                        </br>
+                        <label style="color: antiquewhite">Choose minimum score:</label>
+                        <select required name="score" id="score">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </br>
+                        <button style="margin-bottom: 20px;" class="nicer-button" type="submit">Search</button>
+                    </form>
+                </span>
+
+                <button style="margin-bottom: 20px;" class="nicer-button" onclick="showsearch()" id="showsearchbutton">Show search</button>
+                <!--Search functionality ends-->
+
                     {% for review in reviews %}
                     
-                    <h4  style="color: antiquewhite"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>{{ review[1] }} Rated: {{ review[2] }} / 10</a></h4>
+                    <h5 style="color: antiquewhite;"><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>{{ review[1] }}  Rated: {{ review[2] }} / 10</a></h5>
+                
                     {% endfor %}
                 </div>
           
@@ -32,4 +66,24 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    function showsearch() {
+      
+      var moreText = document.getElementById("showsearch");
+      var btnText = document.getElementById("showsearchbutton");
+    
+      if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        btnText.innerHTML = "Hide search"; 
+        
+      } else {
+        moreText.style.display = "none";
+        btnText.innerHTML = "Show search"; 
+        
+      }
+    }
+    </script>
 </body>

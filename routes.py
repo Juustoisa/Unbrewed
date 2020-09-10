@@ -36,10 +36,23 @@ def newreview():
             flash("Unable to post review, check mandatory info.")
         return redirect("/newreview")
 
-@app.route("/browse")
+@app.route("/browse",methods=["get","post"])
 def browse():
-    list=review.get_list()
-    return render_template("browse.html", reviews=list)
+    if request.method == "GET":
+        list=review.get_list()
+        return render_template("browse.html", reviews=list)
+    if request.method == "POST":
+        minscore = request.form["score"]
+        if not minscore:
+            minscore=1
+        chosentype = request.form.getlist("teatype")
+        if not chosentype:
+            chosentype = ["Black Tea", "Green Tea", "Oolong Tea", "Other Tea", "Pu-erh Tea", "White Tea"]
+        chosentype = tuple(chosentype)
+        list = review.get_search(chosentype,minscore)
+        return render_template("browse.html", reviews=list)
+
+
 
 @app.route("/register", methods=["get","post"])
 def register():
