@@ -13,11 +13,11 @@
                     <form action="/frontpage">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h6 style="color: antiquewhite; text-align: center;"> 10 most recent reviews by our users,<br>click to see the review or search the reviews.</h6>
+                    <h6 style="color: antiquewhite; text-align: center;"> 15 most highest rated reviews by our users,<br>click to see the review or search the reviews.</h6>
                     <!--Search functionality-->
                     <span id="showsearch" style="display: none;">
                     <form action="/browse" method="POST">
-                        <p style="color: antiquewhite">Choose type:<br>
+                        <p style="color: antiquewhite">Choose review teatype:<br>
                         <input type="checkbox" name="teatype" id="teatype" value="Black Tea">Black Tea
                             <input type="checkbox" name="teatype" value="Green Tea">Green Tea
                             <input type="checkbox" name="teatype" value="Oolong Tea">Oolong Tea
@@ -26,7 +26,7 @@
                             <input type="checkbox" name="teatype" value="White Tea">White Tea
                             <br>
                         </br>
-                        <label style="color: antiquewhite">Choose minimum score:</label>
+                        <label style="color: antiquewhite">Choose review minimum score:</label>
                         <select required name="score" id="score">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -39,6 +39,8 @@
                             <option value="9">9</option>
                             <option value="10">10</option>
                         </select>
+                        <p style="color: antiquewhite">Tea name:<br>
+                            <input class="form-control input-sm" type="text" name="namesearch"></p>
                     </br>
                         <button style="margin-bottom: 20px;" class="nicer-button" type="submit">Search</button>
                     </form>

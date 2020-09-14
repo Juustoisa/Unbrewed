@@ -17,7 +17,18 @@ def singlereview(id):
     if not target:
         return redirect("/browse")
     targetuser = user.get_one(target[0][7])
-    return render_template("single-review.html", targetreview=target, targetuser=targetuser)
+    isReviewer = False
+    if session["user_id"] == target[0][7]:
+        isReviewer = True
+    return render_template("single-review.html", targetreview=target, targetuser=targetuser, isReviewer=isReviewer)
+
+@app.route("/reviews/<int:id>/delete",methods=["GET","POST"])
+def deletereview(id):
+    if request.method == "POST":
+        if review.delete(id,session["user_id"]):
+            return redirect("/browse")
+    if request.method == "GET":
+        return redirect("/reviews/" + str(id))
 
 @app.route("/newreview", methods=["get","post"])
 def newreview():
@@ -49,7 +60,10 @@ def browse():
         if not chosentype:
             chosentype = ["Black Tea", "Green Tea", "Oolong Tea", "Other Tea", "Pu-erh Tea", "White Tea"]
         chosentype = tuple(chosentype)
-        list = review.get_search(chosentype,minscore)
+        namesearch = request.form["namesearch"]
+        if not namesearch:
+            namesearch = ""
+        list = review.get_search(chosentype,minscore,namesearch)
         return render_template("browse.html", reviews=list)
 
 @app.route("/users",methods=["get","post"])
@@ -61,8 +75,6 @@ def users():
 @app.route("/users/<int:id>")
 def profile(id):
     target=user.get_profile(id)
-    if not target:
-        return render_template("profile.html", targetuser=target)
     return render_template("profile.html", targetuser=target)
 
 @app.route("/register", methods=["get","post"])
@@ -103,4 +115,4 @@ def logout():
 
 @app.errorhandler(404)
 def backup(e):
-    return redirect("/")
+    return redirect("/browse")

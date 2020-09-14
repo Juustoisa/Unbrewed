@@ -14,11 +14,13 @@
                     <form action="/users">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: -5px;">
-                        Username: {{ targetuser[0][0] }} Statistics</h4>
+                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -10px; margin-top: -5px;">
+                        Statistics for {{ targetuser[0][0] }} </h4>
                         <br>
-                        <h5 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: -5px;">Total Tea reviews: {{targetuser[0][1]+targetuser[0][2]+targetuser[0][3]+targetuser[0][4]+targetuser[0][5]+targetuser[0][6]}}</h5>
-                </div>
+                        <h5 style="color: antiquewhite; text-align: center; margin-bottom: -15px; margin-top: -10px;">Total Tea reviews: {{targetuser[0][1]+targetuser[0][2]+targetuser[0][3]+targetuser[0][4]+targetuser[0][5]+targetuser[0][6]}}</h5>
+                        <br>
+                        <h5 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: -10px;">Average given score: {{ targetuser[0][7] }}</h5>
+                    </div>
                 <div class="row greentea">
                     <div class="col-sm"><h5>Green Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][1] }}</h5></div>
@@ -54,7 +56,7 @@
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
                     <h4 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: 5px;">
-                        Sorry! We don't know much about this user yet</h4>
+                        Sorry!<br>We don't know much about this user yet.<br> They haven't posted any reviews.</h4>
                         {% endif %}
             {% else %}
             <div class="form-style">

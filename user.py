@@ -27,7 +27,7 @@ def get_list():
     return result.fetchall()
 
 def get_profile(id):
-    sql = "SELECT U.username, SUM(CASE WHEN R.teatype ='Green Tea' then 1 ELSE 0 END) as Green, SUM(CASE WHEN R.teatype ='Black Tea' then 1 ELSE 0 END) as Black, SUM(CASE WHEN R.teatype ='Oolong Tea' then 1 ELSE 0 END) as Oolong, SUM(CASE WHEN R.teatype ='Other Tea' then 1 ELSE 0 END) as Other, SUM(CASE WHEN R.teatype ='Pu-erh Tea' then 1 ELSE 0 END) as Pu_erh, SUM(CASE WHEN R.teatype ='White Tea' then 1 ELSE 0 END) as White FROM users as U INNER JOIN reviews as R ON U.id = R.user_id AND U.id=:id GROUP BY U.id" 
+    sql = "SELECT U.username, SUM(CASE WHEN R.teatype ='Green Tea' then 1 ELSE 0 END) as Green, SUM(CASE WHEN R.teatype ='Black Tea' then 1 ELSE 0 END) as Black, SUM(CASE WHEN R.teatype ='Oolong Tea' then 1 ELSE 0 END) as Oolong, SUM(CASE WHEN R.teatype ='Other Tea' then 1 ELSE 0 END) as Other, SUM(CASE WHEN R.teatype ='Pu-erh Tea' then 1 ELSE 0 END) as Pu_erh, SUM(CASE WHEN R.teatype ='White Tea' then 1 ELSE 0 END) as White, ROUND( AVG(R.score),2) AS Average FROM users as U INNER JOIN reviews as R ON U.id = R.user_id AND U.id=:id GROUP BY U.id" 
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
