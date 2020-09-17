@@ -3,14 +3,16 @@ from flask import redirect, render_template, request, session, flash
 import user, review
 import random
 
+#Login screen / landing page
 @app.route("/")
 def index():
     return render_template("index.html")
-
+#Hub page
 @app.route("/frontpage")
 def frontpage():
     return render_template("front-page.html")
 
+#See single review
 @app.route("/reviews/<int:id>")
 def singlereview(id):
     target = review.get_one(id)
@@ -22,6 +24,7 @@ def singlereview(id):
         isReviewer = True
     return render_template("single-review.html", targetreview=target, targetuser=targetuser, isReviewer=isReviewer)
 
+#Delete review
 @app.route("/reviews/<int:id>/delete",methods=["GET","POST"])
 def deletereview(id):
     if request.method == "POST":
@@ -30,6 +33,7 @@ def deletereview(id):
     if request.method == "GET":
         return redirect("/reviews/" + str(id))
 
+#Post new review
 @app.route("/newreview", methods=["get","post"])
 def newreview():
     if request.method == "GET": # random used to generate random number of invisible buttons for very simple spam protection.
@@ -47,11 +51,13 @@ def newreview():
             flash("Unable to post review, check mandatory info.")
         return redirect("/newreview")
 
+#Browse reviews
 @app.route("/browse",methods=["get","post"])
 def browse():
     if request.method == "GET":
         list=review.get_list()
-        return render_template("browse.html", reviews=list)
+        amount=review.get_amount()
+        return render_template("browse.html", reviews=list, amount=amount)
     if request.method == "POST":
         minscore = request.form["score"]
         if not minscore:
@@ -64,19 +70,23 @@ def browse():
         if not namesearch:
             namesearch = ""
         list = review.get_search(chosentype,minscore,namesearch)
-        return render_template("browse.html", reviews=list)
+        amount=review.get_amount()
+        return render_template("browse.html", reviews=list, amount=amount)
 
+#Browse users
 @app.route("/users",methods=["get","post"])
 def users():
     if request.method == "GET":
         list=user.get_list()
         return render_template("users.html", users=list)
 
+#Get profile
 @app.route("/users/<int:id>")
 def profile(id):
     target=user.get_profile(id)
     return render_template("profile.html", targetuser=target)
 
+#Register user
 @app.route("/register", methods=["get","post"])
 def register():
     if request.method == "GET":
@@ -96,7 +106,7 @@ def register():
             flash('Username "' + username + '" already taken')
             return redirect("/register")
 
-
+#Login
 @app.route("/login",methods=["POST"])
 def login():
     username = request.form["username"]
@@ -106,13 +116,13 @@ def login():
     else:
         flash('Wrong username or password')
         return render_template("index.html")
-
+#Logout
 @app.route("/logout")
 def logout():
     del session["user_name"]
     del session["user_id"]
     return redirect("/")
-
+#Redirect 
 @app.errorhandler(404)
 def backup(e):
     return redirect("/browse")

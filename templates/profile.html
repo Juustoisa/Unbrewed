@@ -5,7 +5,7 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%; color: antiquewhite;" class="container h-100">
+    <div style="padding-top: 10%; color: antiquewhite;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
@@ -14,12 +14,12 @@
                     <form action="/users">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -10px; margin-top: -5px;">
+                    <h4 style=" text-align: center; margin-bottom: -10px; margin-top: -5px;">
                         Statistics for {{ targetuser[0][0] }} </h4>
                         <br>
-                        <h5 style="color: antiquewhite; text-align: center; margin-bottom: -15px; margin-top: -10px;">Total Tea reviews: {{targetuser[0][1]+targetuser[0][2]+targetuser[0][3]+targetuser[0][4]+targetuser[0][5]+targetuser[0][6]}}</h5>
+                        <h5 style=" text-align: center; margin-bottom: -15px; margin-top: -10px;">Total Tea reviews: {{targetuser[0][1]+targetuser[0][2]+targetuser[0][3]+targetuser[0][4]+targetuser[0][5]+targetuser[0][6]}}</h5>
                         <br>
-                        <h5 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: -10px;">Average given score: {{ targetuser[0][7] }}</h5>
+                        <h5 style="  text-align: center; margin-bottom: -5px; margin-top: -10px;">Average given score: {{ targetuser[0][7] }}</h5>
                     </div>
                 <div class="row greentea">
                     <div class="col-sm"><h5>Green Tea reviews:</h5></div>
@@ -55,12 +55,12 @@
                     <form action="/users">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -5px; margin-top: 5px;">
+                    <h4 style=" text-align: center; margin-bottom: -5px; margin-top: 5px;">
                         Sorry!<br>We don't know much about this user yet.<br> They haven't posted any reviews.</h4>
                         {% endif %}
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">Login to see this user.</h2>
+                <h2>Login to see this user.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

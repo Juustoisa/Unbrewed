@@ -5,19 +5,19 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%;" class="container h-100">
+    <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
                 <div class="form-style">
-                    <h3 style="color: antiquewhite">Create an account to explore the site!</h3>
+                    <h3>Create an account to explore the site!</h3>
                     <form action="/">
                         <button class="nicer-button" type="submit">Return to Login</button>
                     </form>
 
                     <form action="/register" method="POST" onsubmit="return check(this)">
-                        <p style="color: antiquewhite">Username (6-20 characters):<br>
+                        <p>Username (6-20 characters):<br>
                         <input required class="form-control input-sm" type="text" name="username" minlength="6" maxlength="20"></p>
-                        <p style="color: antiquewhite">Password (6+ characters):<br>
+                        <p>Password (6+ characters):<br>
                         <input required class="form-control input-sm" type="password" minlength="6" name="password"></p>
                         <button class="nicer-button" type="submit">Create account</button>
                         {% with messages = get_flashed_messages() %}

@@ -5,12 +5,12 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%;" class="container h-100">
+    <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
                 <div class="form-style">
-                    <h4 style="color: antiquewhite">Logged in as {{ session.user_name }}, welcome!</h4>
+                    <h4>Logged in as {{ session.user_name }}, welcome!</h4>
                     <br>
                     <form action="/logout">
                         <button style="margin: 20;" class="nicer-button" type="submit">Log out</button>
@@ -31,7 +31,7 @@
           
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">You need to login to view the site!</h2>
+                <h2>You need to login to view the site!</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

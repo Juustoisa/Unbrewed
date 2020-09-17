@@ -5,7 +5,7 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%;" class="container h-100">
+    <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.user_id %}
@@ -13,17 +13,17 @@
                     <form action="/frontpage">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h2 style="color: antiquewhite; text-align: center;">Post a new review!</h2>
-                    <h6 style="color: antiquewhite; text-align: center;"> Fields marked with * are mandatory, be as specific as you can.</h6>
+                    <h2 style="text-align: center;">Post a new review!</h2>
+                    <h6 style="text-align: center;"> Fields marked with * are mandatory, be as specific as you can.</h6>
 
                     <form action="/newreview" method="POST">
-                        <p style="color: antiquewhite">*Tea name:<br>
+                        <p>*Tea name:<br>
                         <input class="form-control input-sm" type="text" name="teaname" minlength="4" required></p>
                         </br>
-                        <p style="color: antiquewhite; margin-top: -30px; margin-bottom: -15px;">Link to shop:<br>
+                        <p style="margin-top: -30px; margin-bottom: -15px;">Link to shop:<br>
                             <input class="form-control input-sm" type="url" name="shop"></p>
                         </br>
-                        <label style="color: antiquewhite; margin-top: -20px;">*Choose tea type:</label>
+                        <label style="margin-top: -20px;">*Choose tea type:</label>
                         <select required name="teatype" id="teatype">
                             <option value=""></option>
                             <option value="Black Tea">Black Tea</option>
@@ -34,7 +34,7 @@
                             <option value="White Tea">White Tea</option>
                         </select>
                     </br>
-                        <label style="color: antiquewhite">*Score 1-10:</label>
+                        <label >*Score 1-10:</label>
                         <select required name="score" id="score">
                             <option value=""></option>
                             <option value="1">1</option>
@@ -50,11 +50,11 @@
                         </select>
                     </br>
                     
-                    <label style="color: antiquewhite">Review:</label>
+                    <label >Review:</label>
                 </br>
                     <textarea name="reviewtext" style="margin-bottom: 10px;resize: none;" rows="5" class="form-control input-sm" name="review" id="review" maxlength="600" ></textarea>
 
-                    <p style="color: antiquewhite;">Picture-url:<br>
+                    <p>Picture-url:<br>
                         <input class="form-control input-sm" type="url" name="picture"></p>
                     {% for i in range(0,  rnumber ) %} 
                     <button hidden class="nicer-button" >Post review</button>
@@ -78,7 +78,7 @@
           
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">You need to login to post reviews.</h2>
+                <h2>You need to login to post reviews.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

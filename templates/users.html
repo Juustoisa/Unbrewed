@@ -5,7 +5,7 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%; color: antiquewhite;" class="container h-100">
+    <div style="color:antiquewhite; padding-top: 10%; color: antiquewhite;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-10 col-lg-7">
             {% if session.user_id %}
@@ -13,9 +13,9 @@
                     <form action="/frontpage">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>
-                    <h3 style="color: antiquewhite; text-align: center;"> Users:</h3>
+                    <h3 style="text-align: center;"> Users:</h3>
                     <br>
-                    <h6 style="color: antiquewhite; text-align: center;margin-top: -30px;"> Click usernames to see more information</h6>
+                    <h6 style="text-align: center;margin-top: -30px;"> Click usernames to see more information</h6>
                     <div class="row">
                         <div class="col-sm"><h4>Username</h4></div>
                         <div class="col-sm"><h4 style="text-align: right;">Reviews</h4></div>
@@ -26,7 +26,7 @@
 
                     {% for user in users %}
                     <div class="row">
-                    <div class="col-sm"><h6 style="color: antiquewhite;"><a style="color: antiquewhite; text-align: left;" 
+                    <div class="col-sm"><h6><a style="color: antiquewhite; text-align: left;" 
                         href='/users/{{user[1]}}'>{{ user[0] }}</a></h6></div>
                         
                         <div class="col-sm"><h5 style="text-align: right;"> {{ user[2] }} </h5></div>
@@ -37,7 +37,7 @@
           
             {% else %}
             <div class="form-style">
-                <h2 style="color: antiquewhite">Login to browse users.</h2>
+                <h2 >Login to browse users.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>

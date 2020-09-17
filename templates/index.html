@@ -5,12 +5,12 @@
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
     
-    <div style=" padding-top: 10%;" class="container h-100">
+    <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
             {% if session.username %}
                 <div class="form-style">
-                    <p style="color: antiquewhite">Logged in as {{ session.username }}, welcome!</p>
+                    <p>Logged in as {{ session.username }}, welcome!</p>
                     <form action="/logout">
                         <button class="nicer-button" type="submit">Log out</button>
                     </form>
@@ -18,15 +18,15 @@
           
             {% else %}
                 <div class="form-style">
-                    <h2 style="color: antiquewhite; text-align: center;">Welcome to Unbrewed!</h2>
-                    <h3 style="color: antiquewhite">Login</h3> <p style="color: antiquewhite">or</p>
+                    <h2 style="text-align: center;">Welcome to Unbrewed!</h2>
+                    <h3>Login</h3> <p>or</p>
                     <form action="/register">
                         <button class="nicer-button" type="submit" value="Register">Create account</button>
                     </form>
                     <form action="/login" method="POST">
-                        <p style="color: antiquewhite">Username:<br>
+                        <p>Username:<br>
                         <input class="form-control input-sm" type="text" name="username"></p>
-                        <p style="color: antiquewhite">Password:<br>
+                        <p>Password:<br>
                         <input class="form-control input-sm" type="password" name="password"></p>
                         <button class="nicer-button" type="submit" value="Login">Login</button>
                         {% with messages = get_flashed_messages() %}

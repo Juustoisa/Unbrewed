@@ -2,48 +2,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
+
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
 
-    
-    <div style=" padding-top: 10%;" class="container h-100">
+
+    <div style="color:antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
-            {% if session.user_id %}
+                {% if session.user_id %}
                 <div class="form-style">
-                    <form action="/browse">
-                        <button class="nicer-button" type="submit">Return</button>
-                    </form>
-                    {% if isReviewer == true  %}
-                    <form method="POST" action="{{ targetreview[0][0] }}/delete">
-                        <button style="margin-top: 10px;" onclick="return confirm('Are you sure you want to delete this review?');" class="nicer-button float-right" type="submit">Delete</button>
-                    </form>
-                    {% endif %}
-                    <h4 style="color: antiquewhite; text-align: center; margin-bottom: -25px; margin-top: -20px;">
-                        <br>Tea name: {{ targetreview[0][1] }}</h4>
-                        <h5 style="color: antiquewhite; text-align: center; margin-top: -25px;"> <a style="color: antiquewhite" href='/users/{{targetreview[0][7]}}'>
+                    <div class="row">
+                        <div class="col-md">
+                            <form action="/browse">
+                                <button class="nicer-button float-left" type="submit">Return</button>
+                            </form>
+                        </div>
+                        {% if isReviewer == true  %}
+                        <div class="col-md d-flex justify-content-end">
+                            <form action="{{ targetreview[0][0] }}/delete">
+                                <button onclick="return confirm('Are you sure you want to delete this review?');"
+                                    class="nicer-button float-right" type="submit">Delete</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <h4 style="text-align: center; margin-bottom: -25px; margin-top: -20px;">
+                        <br>{{ targetreview[0][1] }}</h4>
+                    <h5 style="text-align: center; margin-top: -25px;"> <a
+                            style="color: antiquewhite;text-decoration: underline;"
+                            href='/users/{{targetreview[0][7]}}'>
                             <br>Review by: {{ targetuser[0][0] }}</a></h5>
-                            <h6 style="color: antiquewhite; text-align: center;">
-                            <img style="display: block;margin-left: auto;margin-right: auto; max-width:400px; max-height:600px;"src="{{ targetreview[0][6]}}" onerror="this.src='../static/kuppi.jpg'">
-                        <br>From shop: <a href='{{ targetreview[0][2] }}'> {{ targetreview[0][2] }}</a>
+                    <h6 style="text-align: center;">
+                        <img style="display: block;margin-left: auto;margin-right: auto; max-width:400px; max-height:600px;"
+                            src="{{ targetreview[0][6]}}" onerror="this.src='../static/kuppi.jpg'">
+                        <br>From shop: <a style="color: antiquewhite; text-decoration: underline;"
+                            href='{{ targetreview[0][2] }}'> {{ targetreview[0][2] }}</a>
                         <br>Tea type: {{ targetreview[0][3] }}
                         <br>Score {{ targetreview[0][4] }} / 10
                         <br>Review: {{ targetreview[0][5] }}</h6>
-                            
-                    
-                    
-                    
+
                 </div>
-          
-            {% else %}
-            <div class="form-style">
-                <h2 style="color: antiquewhite">Login to see this review.</h2>
-                <form action="/">
-                    <button class="nicer-button" type="submit">To login</button>
-                </form>
-            </div>
-            {% endif %}
+
+                {% else %}
+                <div class="form-style">
+                    <h2>Login to see this review.</h2>
+                    <form action="/">
+                        <button class="nicer-button" type="submit">To login</button>
+                    </form>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
+    </div>
 </body>
