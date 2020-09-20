@@ -2,6 +2,17 @@
 
 
 ### Unbrewed is a tea review app in the making.
+Try current version of Unbrewed at https://unbrewed.herokuapp.com/
+
+Current version allows you to:
+  - Register as an user, login and logout.
+  - Add tea reviews, delete them or update by submitting a new review with same name.
+  - browse tea reviews and search reviews with specific criteria. 
+  - Browse userbase and see simple profile pages of other users.
+
+
+
+---
 
 When completed, users will be able to:
   - Register as an user.
