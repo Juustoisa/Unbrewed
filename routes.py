@@ -116,7 +116,7 @@ def register():
             flash('User "' + username + '" created', 'flashSuccess')
             return redirect("/")
         else:
-            flash('Username "' + username + '" already taken', 'flashError')
+            flash('Username "' + username + '" already taken.', 'flashError')
             return redirect("/register")
 
 #Login

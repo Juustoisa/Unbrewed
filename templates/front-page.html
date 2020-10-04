@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-
-    <nav class="navbar navbar-expand navigationbar">
-        
+    {% if session.user_id %}
+    <nav class="navbar navbar-expand navigationbar">  
+        <div class="navbar-nav mr-auto">
+                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/browse">Browse reviews</a>
+                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
+                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
+        </div>
         <div class="navbar-nav">
-            
-                <a style="color: antiquewhite;" class="nav-item nav-link" href="/browse">Browse reviews</a>
-                <a style="color: antiquewhite;" class="nav-item nav-link" href="/users">Browse users</a>
-                <a style="color: antiquewhite;" class="nav-item nav-link" href="/newreview">Post a new review</a>
-                {% if session.user_id %}
-                <a style="color: antiquewhite;" class="nav-item">Logged in as {{ session.user_name }}</a>
-                {% endif %}
+            <p style="color: antiquewhite; font-size: 18px; margin-right: -0.6rem; padding-top: 8px;" class="nav-item" >Logged in as: </p>
+            <a style="color: antiquewhite; font-size: 18px;" class="nav-item nav-link px-3" href='/users/{{session.user_id}}'>{{session.user_name}} </a>
+            <a class="nav-item px-2" style="color: antiquewhite;" href="/logout"><span class="fa fa-sign-out" style="font-size: 20px;color:antiquewhite; padding-top: 11px;">Logout</span></a>
         </div>
     </nav>
-
+    {% endif %}
     <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
@@ -24,23 +25,7 @@
                
                 
                 <div class="form-style">
-                    <h4>Logged in as {{ session.user_name }}, welcome!</h4>
-                    <br>
-                    <form action="/logout">
-                        <button style="margin: 20;" class="nicer-button" type="submit">Log out</button>
-                    </form>
-                    <br>
-                    <form action="/browse">
-                        <button style="margin: 20;" class="nicer-button" type="submit">Browse reviews</button>
-                    </form>
-                    <br>
-                    <form action="/users">
-                        <button style="margin: 20;" class="nicer-button" type="submit">Browse users</button>
-                    </form>
-                    <br>
-                    <form action="/newreview">
-                        <button style="margin: 20;" class="nicer-button" type="submit">Post a new review</button>
-                    </form>
+                    <h4>Logged in as {{ session.user_name }}, welcome!</h4>                
                 </div>
           
             {% else %}
