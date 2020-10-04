@@ -39,13 +39,25 @@ def newreview():
     if request.method == "GET": # random used to generate random number of invisible buttons for very simple spam protection.
         return render_template("new-review.html", rnumber=random.randint(1,15))
     if request.method == "POST":
+        incompleteReviews = False
         name = request.form["teaname"]
+        if len(name) < 5:
+            flash("Tea name too short")
+            incompleteReviews = True
+        elif len(name) > 100:
+            flash("Tea name too long")
+            incompleteReviews = True
         teatype = request.form["teatype"]
         score = request.form["score"]
         shop = request.form["shop"]
         reviewtext = request.form["reviewtext"]
+        if len(reviewtext) > 600:
+            flash("Reviews have a maximum length of 600 characters")
+            incompleteReviews = True
         picture_url = request.form["picture"]
-        if review.send(name, teatype, score, shop, reviewtext, picture_url):
+        if incompleteReviews:
+            redirect("/newreview")
+        elif review.send(name, teatype, score, shop, reviewtext, picture_url):
             return redirect("/frontpage")
         else:
             flash("Unable to post review, check mandatory info.")
@@ -101,9 +113,10 @@ def register():
             flash("Password doesn't fit criteria")
             return redirect("/register")
         if user.register(username,password):
+            flash('User "' + username + '" created', 'flashSuccess')
             return redirect("/")
         else:
-            flash('Username "' + username + '" already taken')
+            flash('Username "' + username + '" already taken', 'flashError')
             return redirect("/register")
 
 #Login

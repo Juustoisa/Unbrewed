@@ -7,6 +7,14 @@
   background-size: cover !important;
 }
 
+.flashSuccess {
+	color: rgb(72, 255, 0);
+}
+
+.flashError {
+	color: red;
+}
+
 .form-style{
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
