@@ -3,7 +3,18 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
-
+    <nav class="navbar navbar-expand navigationbar">
+        
+        <div class="navbar-nav">
+            
+                <a style="color: antiquewhite;" class="nav-item nav-link" href="/browse">Browse reviews</a>
+                <a style="color: antiquewhite;" class="nav-item nav-link" href="/users">Browse users</a>
+                <a style="color: antiquewhite;" class="nav-item nav-link" href="/newreview">Post a new review</a>
+                {% if session.user_id %}
+                <a style="color: antiquewhite;" class="nav-item">Logged in as {{ session.user_name }}</a>
+                {% endif %}
+        </div>
+    </nav>
     
     <div style="padding-top: 10%; color: antiquewhite;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">

@@ -10,6 +10,12 @@ Current version allows you to:
   - browse tea reviews and search reviews with specific criteria. 
   - Browse userbase and see simple profile pages of other users.
 
+### 04.10.20
+Now:
+   - Previously listed functionalities
+   - Added navbar for easier navigation
+   - Improved error messaging and validation.
+
 
 
 ---
