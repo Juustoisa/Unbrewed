@@ -127,7 +127,7 @@ def login():
     if user.login(username,password):
             return redirect("/frontpage")
     else:
-        flash('Wrong username or password')
+        flash('Wrong username or password', 'flashError')
         return render_template("index.html")
 #Logout
 @app.route("/logout")

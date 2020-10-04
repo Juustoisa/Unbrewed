@@ -30,15 +30,13 @@
                         <button class="nicer-button" type="submit" value="Login">Login</button>
                         {% with messages = get_flashed_messages(with_categories=true) %}
                         {% if messages %}
-                        <ul class=flashes>
+                        <div class=flashes>
                             {% for category, message in messages %}
-                                <li class="{{ category }}">{{ message }}</li>
-                            {% endfor %}
-                            
-                            </ul>
-                            {% endif %}
-                            {% endwith %}
-                        </ul>
+                                <p class="{{ category }}" style="padding-top: 10px;">{{ message }}</p>
+                            {% endfor %}   
+                        </div>
+                        {% endif %}
+                        {% endwith %}
                     </form>
                 </div>
             {% endif %}
