@@ -42,7 +42,7 @@ def newreview():
     if request.method == "POST":
         incompleteReviews = False
         name = request.form["teaname"]
-        if len(name) < 5:
+        if len(name.strip()) < 5:
             flash("Tea name too short")
             incompleteReviews = True
         elif len(name) > 100:
@@ -58,7 +58,7 @@ def newreview():
         picture_url = request.form["picture"]
         if incompleteReviews:
             redirect("/newreview")
-        elif review.send(name, teatype, score, shop, reviewtext, picture_url):
+        elif review.send(name.strip(), teatype, score, shop, reviewtext, picture_url):
             flash('New review posted successfully.', 'flashSuccess')
             return redirect("/frontpage")
         else:
@@ -108,17 +108,17 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if len(username) < 6 or len(username) > 20:
+        if len(username.strip()) < 6 or len(username) > 20:
             flash("Username doesn't fit criteria")
             return redirect("/register")
         if len(password) < 6:
             flash("Password doesn't fit criteria")
             return redirect("/register")
-        if user.register(username,password):
-            flash('User "' + username + '" created', 'flashSuccess')
+        if user.register(username.strip(),password):
+            flash('User "' + username.strip() + '" created', 'flashSuccess')
             return redirect("/")
         else:
-            flash('Username "' + username + '" already taken.', 'flashError')
+            flash('Username "' + username + '" already taken. Username uniqueness is case-insensitive.', 'flashError')
             return redirect("/register")
 
 #Login
