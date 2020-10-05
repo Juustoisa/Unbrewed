@@ -25,8 +25,17 @@
                
                 <div class="form-style">
                     <h4 class="text-center">Logged in as {{ session.user_name }}, welcome!</h4>                
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class=flashes>
+                    {% for category, message in messages %}
+                        <p class="{{ category }}" style="padding-top: 10px;">{{ message }}</p>
+                    {% endfor %}   
                 </div>
-          
+                {% endif %}
+                {% endwith %}
+            </div>
             {% else %}
             <div class="form-style">
                 <h2>You need to login to view the site!</h2>

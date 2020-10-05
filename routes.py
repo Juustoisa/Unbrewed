@@ -29,7 +29,8 @@ def singlereview(id):
 def deletereview(id):
     if request.method == "POST":
         if review.delete(id,session["user_id"]):
-            return redirect("/browse")
+            flash('Review deleted successfully.', 'flashSuccess')
+            return redirect("/frontpage")
     if request.method == "GET":
         return redirect("/reviews/" + str(id))
 
@@ -58,6 +59,7 @@ def newreview():
         if incompleteReviews:
             redirect("/newreview")
         elif review.send(name, teatype, score, shop, reviewtext, picture_url):
+            flash('New review posted successfully.', 'flashSuccess')
             return redirect("/frontpage")
         else:
             flash("Unable to post review, check mandatory info.")
