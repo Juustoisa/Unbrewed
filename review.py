@@ -1,10 +1,22 @@
 from db import db
 import user
 
-#Browse
+#Browse reviews
 def get_list():
     sql = "SELECT R.id, R.name, R.score FROM reviews R ORDER BY r.score DESC LIMIT 15"
     result = db.session.execute(sql)
+    return result.fetchall()
+
+#Browse teas
+def get_tea_list():
+    sql = "SELECT name, REPLACE(teatype,' ',''), ROUND( AVG(score),2) AS AVG FROM reviews GROUP BY name, teatype ORDER BY AVG DESC"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
+#Get reviews for specific tea
+def get_tea_reviews(name):
+    sql = "SELECT reviews.*, users.username FROM reviews JOIN users ON users.id = Reviews.user_id WHERE name=:name"
+    result = db.session.execute(sql, {"name":name})
     return result.fetchall()
 
 #Get amount
@@ -13,10 +25,17 @@ def get_amount():
     result = db.session.execute(sql)
     return result.fetchall()
 
-#Search functionality
+#Search functionality teas
+def get_search_teas(chosentype,minscore,namesearch):
+    namesearch = "%" + namesearch + "%"
+    sql = "SELECT name, REPLACE(teatype,' ',''), ROUND( AVG(score),2) AS AVG FROM reviews WHERE teatype IN :chosentype AND name ILIKE :namesearch GROUP BY name, teatype HAVING AVG(score)>:minscore ORDER BY AVG DESC"
+    result = db.session.execute(sql, {"chosentype":chosentype, "minscore":minscore, "namesearch":namesearch})
+    return result.fetchall()
+
+#Search functionality reviews
 def get_search(chosentype,minscore,namesearch):
     namesearch = "%" + namesearch + "%"
-    sql = "SELECT R.id, R.name, R.score FROM reviews R WHERE R.teatype IN :chosentype AND R.score >= :minscore AND R.name ILIKE :namesearch ORDER BY r.id DESC"
+    sql = "SELECT R.id, R.name, R.score FROM reviews R WHERE R.teatype IN :chosentype AND R.score >= :minscore AND R.name ILIKE :namesearch ORDER BY r.score DESC"
     result = db.session.execute(sql, {"chosentype":chosentype, "minscore":minscore, "namesearch":namesearch})
     return result.fetchall()
 
@@ -40,7 +59,7 @@ def send(name, teatype, score, shop, reviewtext, picture_url):
         picture_url="../static/kuppi.jpg"
     if not reviewtext:
         reviewtext = "Reviewer didn't provide a written review."
-
+    
     sql = "DELETE FROM Reviews WHERE reviews.name=:name AND reviews.user_id=:user_id"
     db.session.execute(sql, {"name":name, "user_id":user_id})
     db.session.commit()

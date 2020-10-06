@@ -17,12 +17,21 @@ def frontpage():
 def singlereview(id):
     target = review.get_one(id)
     if not target:
-        return redirect("/browse")
+        return redirect("/reviews")
     targetuser = user.get_one(target[0][7])
     isReviewer = False
     if session["user_id"] == target[0][7]:
         isReviewer = True
     return render_template("single-review.html", targetreview=target, targetuser=targetuser, isReviewer=isReviewer)
+
+#See reviews of single tea
+@app.route("/teas/<name>")
+def reviews(name):
+    if request.method == "GET":
+        list = review.get_tea_reviews(name)
+        if not list:
+            return redirect("/teas")
+        return render_template("reviews-for-tea.html", reviews=list, userID=session["user_id"])
 
 #Delete review
 @app.route("/reviews/<int:id>/delete",methods=["GET","POST"])
@@ -58,20 +67,43 @@ def newreview():
         picture_url = request.form["picture"]
         if incompleteReviews:
             redirect("/newreview")
-        elif review.send(name.strip(), teatype, score, shop, reviewtext, picture_url):
+        elif review.send(name.strip().lower().capitalize(), teatype, score, shop, reviewtext, picture_url):
             flash('New review posted successfully.', 'flashSuccess')
             return redirect("/frontpage")
         else:
             flash("Unable to post review, check mandatory info.")
         return redirect("/newreview")
 
+#Browse teas
+@app.route("/teas",methods=["get","post"])
+def teas():
+    if request.method == "GET":
+        list=review.get_tea_list()
+        amount = len(list)
+        return render_template("teas.html", reviews=list, amount=amount)
+    if request.method == "POST":
+        minscore = request.form["score"]
+        if not minscore:
+            minscore=1
+        chosentype = request.form.getlist("teatype")
+        if not chosentype:
+            chosentype = ["Black Tea", "Green Tea", "Oolong Tea", "Other Tea", "Pu-erh Tea", "White Tea"]
+        chosentype = tuple(chosentype)
+        namesearch = request.form["namesearch"]
+        if not namesearch:
+            namesearch = ""
+        list = review.get_search_teas(chosentype,minscore,namesearch)
+        amount=len(review.get_tea_list())
+        return render_template("teas.html", reviews=list, amount=amount)
+
+
 #Browse reviews
-@app.route("/browse",methods=["get","post"])
+@app.route("/reviews",methods=["get","post"])
 def browse():
     if request.method == "GET":
         list=review.get_list()
-        amount=review.get_amount()
-        return render_template("browse.html", reviews=list, amount=amount)
+        amount = len(list)
+        return render_template("reviews.html", reviews=list, amount=amount)
     if request.method == "POST":
         minscore = request.form["score"]
         if not minscore:
@@ -84,8 +116,8 @@ def browse():
         if not namesearch:
             namesearch = ""
         list = review.get_search(chosentype,minscore,namesearch)
-        amount=review.get_amount()
-        return render_template("browse.html", reviews=list, amount=amount)
+        amount = review.get_amount()[0][0]
+        return render_template("reviews.html", reviews=list, amount=amount)
 
 #Browse users
 @app.route("/users",methods=["get","post"])
@@ -140,4 +172,4 @@ def logout():
 #Redirect 
 @app.errorhandler(404)
 def backup(e):
-    return redirect("/browse")
+    return redirect("/frontpage")

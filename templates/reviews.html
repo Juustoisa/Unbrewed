@@ -21,34 +21,25 @@
     {% endif %}
     <div style="color: antiquewhite; padding-top: 10%;" class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-10 col-md-8 col-lg-6">
+            <div class="col-10 col-md-10 col-lg-7">
             {% if session.user_id %}
-                <div class="form-style">
+                <div class="form-style" style="overflow-wrap: break-word;">
                     
-                    <h2 style="text-align: center;">Post a new review!</h2>
-                    <h6 style="text-align: center;"> Fields marked with * are mandatory, be as specific as you can.</h6>
-
-                    <form action="/newreview" method="POST">
-                        <p>*Tea name:<br>
-                        <input class="form-control input-sm" type="text" name="teaname" minlength="5" maxlength="100" required></p>
+                    <h6 style="text-align: center;"> 15 most highest rated reviews by our users,<br>click to see the review or search the reviews.</h6>
+                    <!--Search functionality-->
+                    <span id="showsearch" style="display: none;">
+                    <form action="/reviews" method="POST">
+                        <p>Choose review teatype:</p><br>
+                        <input type="checkbox" name="teatype" id="teatype" value="Black Tea">Black Tea
+                            <input type="checkbox" name="teatype" value="Green Tea">Green Tea
+                            <input type="checkbox" name="teatype" value="Oolong Tea">Oolong Tea
+                            <input type="checkbox" name="teatype" value="Other Tea">Other/Herbal
+                            <input type="checkbox" name="teatype" value="Pu-erh Tea">Pu-erh Tea
+                            <input type="checkbox" name="teatype" value="White Tea">White Tea
+                            <br>
                         </br>
-                        <p style="margin-top: -30px; margin-bottom: -15px;">Link to shop:<br>
-                            <input class="form-control input-sm" type="url" name="shop"></p>
-                        </br>
-                        <label style="margin-top: -20px;">*Choose tea type:</label>
-                        <select required name="teatype" id="teatype">
-                            <option value=""></option>
-                            <option value="Black Tea">Black Tea</option>
-                            <option value="Green Tea">Green Tea</option>
-                            <option value="Oolong Tea">Oolong Tea</option>
-                            <option value="Other Tea">Other/Herbal</option>
-                            <option value="Pu-erh Tea">Pu-erh Tea</option>
-                            <option value="White Tea">White Tea</option>
-                        </select>
-                    </br>
-                        <label >*Score 1-10:</label>
+                        <label>Choose review minimum score:</label>
                         <select required name="score" id="score">
-                            <option value=""></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -60,36 +51,27 @@
                             <option value="9">9</option>
                             <option value="10">10</option>
                         </select>
+                        <p >Tea name:<br>
+                            <input class="form-control input-sm" type="text" name="namesearch"></p>
                     </br>
-                    
-                    <label >Review:</label>
-                </br>
-                    <textarea name="reviewtext" style="margin-bottom: 10px;resize: none;" rows="5" class="form-control input-sm" name="review" id="review" maxlength="600" ></textarea>
-
-                    <p>Picture-url:<br>
-                        <input class="form-control input-sm" type="url" name="picture"></p>
-                    {% for i in range(0,  rnumber ) %} 
-                    <button hidden class="nicer-button" >Post review</button>
-                    {% endfor %}
-                    <button class="nicer-button" type="submit">Post review</button>
-                    {% for i in range(0,  rnumber ) %} 
-                    <button hidden class="nicer-button" >Post review</button>
-                    {% endfor %}
-                        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                        <div class=flashes>
-                            {% for message in messages %}
-                            <p style="color: rgb(255, 0, 0); padding-top: 5px;">{{ message }}</p>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                        {% endwith %}
+                        <button style="margin-bottom: 20px;" class="nicer-button" type="submit">Search</button>
                     </form>
+                </span>
+
+                <button style="margin-bottom: 20px;" class="nicer-button" onclick="showsearch()" id="showsearchbutton">Show search</button>
+                <!--Search functionality ends-->
+                
+                    {% for review in reviews %}
+                    
+                    <h5><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>{{ review[1] }}  Rated: {{ review[2] }} / 10</a></h5>
+                
+                    {% endfor %}
+                    <div class="col-md d-flex justify-content-end"><i>Total number of reviews in our database: {{ amount }}</i></div>
                 </div>
           
             {% else %}
             <div class="form-style">
-                <h2>You need to login to post reviews.</h2>
+                <h2>Login to browse the reviews.</h2>
                 <form action="/">
                     <button class="nicer-button" type="submit">To login</button>
                 </form>
@@ -98,5 +80,25 @@
             </div>
         </div>
     </div>
+</div>
 
+
+
+<script>
+    function showsearch() {
+      
+      var moreText = document.getElementById("showsearch");
+      var btnText = document.getElementById("showsearchbutton");
+    
+      if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        btnText.innerHTML = "Hide search"; 
+        
+      } else {
+        moreText.style.display = "none";
+        btnText.innerHTML = "Show search"; 
+        
+      }
+    }
+    </script>
 </body>

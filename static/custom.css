@@ -57,13 +57,13 @@
   height: auto;
 }
 
-.greentea{
+.GreenTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #304e30;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #28a328b7;
 	box-shadow: inset 0px 0px 15px #2ea300;
 	-moz-box-shadow: inset 0px 0px 15px #2ea300;
@@ -73,13 +73,13 @@
   height: auto;
 }
 
-.blacktea{
+.BlackTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #464646;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #1a1918b7;
 	box-shadow: inset 0px 0px 15px #000000;
 	-moz-box-shadow: inset 0px 0px 15px #000000;
@@ -89,13 +89,13 @@
   height: auto;
 }
 
-.Oolongtea{
+.OolongTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #774000;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #5f3600b7;
 	box-shadow: inset 0px 0px 15px #000000;
 	-moz-box-shadow: inset 0px 0px 15px #000000;
@@ -105,13 +105,13 @@
   height: auto;
 }
 
-.Othertea{
+.OtherTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #04855e;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #20aa98b7;
 	box-shadow: inset 0px 0px 15px #000000;
 	-moz-box-shadow: inset 0px 0px 15px #000000;
@@ -122,13 +122,13 @@
 }
 
 
-.Puerhtea{
+.PuerhTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #857804;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #978b22b7;
 	box-shadow: inset 0px 0px 15px #000000;
 	-moz-box-shadow: inset 0px 0px 15px #000000;
@@ -138,13 +138,13 @@
   height: auto;
 }
 
-.Whitetea{
+.WhiteTea{
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 0px 0px 0px 0px;
+	margin: 2px 0px 2px 0px;
 	border: 1px solid #C0C0C0;
-	padding: 10px;
+	padding: 6px 5px 0px 5px;
 	background: #faf9f0b7;
 	box-shadow: inset 0px 0px 15px #000000;
 	-moz-box-shadow: inset 0px 0px 15px #000000;

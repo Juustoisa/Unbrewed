@@ -7,9 +7,10 @@
     {% if session.user_id %}
     <nav class="navbar navbar-expand navigationbar">  
         <div class="navbar-nav mr-auto">
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/browse">Browse reviews</a>
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/teas">Browse teas</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/reviews">Browse reviews</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
         </div>
         <div class="navbar-nav">
             <p style="color: antiquewhite; font-size: 18px; margin-right: -0.6rem; padding-top: 8px;" class="nav-item" >Logged in as: </p>
@@ -32,32 +33,32 @@
                         <br>
                         <h5 style="  text-align: center; margin-bottom: -5px; margin-top: -10px;">Average given score: {{ targetuser[0][7] }}</h5>
                     </div>
-                <div class="row greentea">
+                <div class="row GreenTea">
                     <div class="col-sm"><h5>Green Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][1] }}</h5></div>
                 </div>
 
-                <div class="row blacktea">
+                <div class="row BlackTea">
                     <div class="col-sm"><h5>Black Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][2] }}</h5></div>
                 </div>
 
-                <div class="row Oolongtea">
+                <div class="row OolongTea">
                     <div class="col-sm"><h5>Oolong Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][3] }}</h5></div>
                 </div>
 
-                <div class="row Othertea">
+                <div class="row OtherTea">
                     <div class="col-10"><h5>Other/Herbal Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][4] }}</h5></div>
                 </div>
 
-                <div class="row Puerhtea">
+                <div class="row PuerhTea">
                     <div class="col-sm"><h5>Pu-erh Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][5] }}</h5></div>
                 </div>
 
-                <div class="row Whitetea">
+                <div class="row WhiteTea">
                     <div class="col-sm"><h5>White Tea reviews:</h5></div>
                     <div class="col-sm"><h5 style="text-align: right;">{{ targetuser[0][6] }}</h5></div>
                 </div>

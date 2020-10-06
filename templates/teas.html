@@ -3,13 +3,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
-<body style="background: url(../static/tee.jpg);" class="page-holder bg-image">
+<body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
     {% if session.user_id %}
     <nav class="navbar navbar-expand navigationbar">  
         <div class="navbar-nav mr-auto">
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/browse">Browse reviews</a>
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
-                <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/teas">Browse teas</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/reviews">Browse reviews</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
         </div>
         <div class="navbar-nav">
             <p style="color: antiquewhite; font-size: 18px; margin-right: -0.6rem; padding-top: 8px;" class="nav-item" >Logged in as: </p>
@@ -24,11 +25,11 @@
             {% if session.user_id %}
                 <div class="form-style" style="overflow-wrap: break-word;">
                     
-                    <h6 style="text-align: center;"> 15 most highest rated reviews by our users,<br>click to see the review or search the reviews.</h6>
+                    <h6 style="text-align: center;"> Teas in our database,<br>click to see the reviews or search.</h6>
                     <!--Search functionality-->
                     <span id="showsearch" style="display: none;">
-                    <form action="/browse" method="POST">
-                        <p>Choose review teatype:</p><br>
+                    <form action="/teas" method="POST">
+                        <p>Choose teatype:</p>
                         <input type="checkbox" name="teatype" id="teatype" value="Black Tea">Black Tea
                             <input type="checkbox" name="teatype" value="Green Tea">Green Tea
                             <input type="checkbox" name="teatype" value="Oolong Tea">Oolong Tea
@@ -37,7 +38,7 @@
                             <input type="checkbox" name="teatype" value="White Tea">White Tea
                             <br>
                         </br>
-                        <label>Choose review minimum score:</label>
+                        <label>Choose minimum average score:</label>
                         <select required name="score" id="score">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -50,6 +51,7 @@
                             <option value="9">9</option>
                             <option value="10">10</option>
                         </select>
+                        <br>
                         <p >Tea name:<br>
                             <input class="form-control input-sm" type="text" name="namesearch"></p>
                     </br>
@@ -58,16 +60,31 @@
                 </span>
 
                 <button style="margin-bottom: 20px;" class="nicer-button" onclick="showsearch()" id="showsearchbutton">Show search</button>
-                <!--Search functionality ends-->
-
-                    {% for review in reviews %}
-                    
-                    <h5><a style="color: antiquewhite" href='/reviews/{{review[0]}}'>{{ review[1] }}  Rated: {{ review[2] }} / 10</a></h5>
-                
-                    {% endfor %}
-                    <div class="col-md d-flex justify-content-end"><i>Total number of reviews in our database: {{ amount[0][0] }}</i></div>
+                <div class="col-md d-flex justify-content-end"><i style="font-size: 12;">Total number of teas in our database: {{ amount }}</i></div>
                 </div>
-          
+                <!--Search functionality ends-->
+                <div class="row justify-content-center" style="margin-top: -5px; margin-bottom: 10px;">
+                    <p class=GreenTea> Green Tea</p>
+                    <p class=BlackTea> Black Tea</p>
+                    <p class=OolongTea> Oolong Tea</p>
+                    <p class=OtherTea> Other/Herbal Tea</p>
+                    <p class=PuerhTea> Pu-erh Tea</p>
+                    <p class=WhiteTea> White Tea</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8"><h6><a style="color: antiquewhite; text-align: left; ">Name</a></h6></div>
+                        
+                    <div class='col-sm'><h5 style="text-align: right;"> Average score </h5></div>
+                    </div>
+                {% for review in reviews %}
+                    <div class="row {{ review[1] }}">
+                        <div class="col-sm-8"><h6><a style="color: antiquewhite; text-align: left;" 
+                            href='/teas/{{review[0]}}'>{{ review[0] }}</a></h6></div>
+                            
+                        <div class='col-sm'><h5 style="text-align: right;"> {{ review[2] }} </h5></div>
+                        </div>
+                {% endfor %}
+                </div>
             {% else %}
             <div class="form-style">
                 <h2>Login to browse the reviews.</h2>
