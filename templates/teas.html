@@ -72,17 +72,19 @@
                     <p class=WhiteTea> White Tea</p>
                 </div>
                 <div class="row">
-                    <div class="col-sm-8"><h6><a style="color: antiquewhite; text-align: left; ">Name</a></h6></div>
+                    <div class="col-sm-7"><h6><a style="color: antiquewhite; text-align: left; ">Name</a></h6></div>
                         
-                    <div class='col-sm'><h5 style="text-align: right;"> Average score </h5></div>
+                    <div class='col-sm'><h5 style="text-align: left;"> Average score </h5></div>
                     </div>
                 {% for review in reviews %}
                     <div class="row {{ review[1] }}">
-                        <div class="col-sm-8"><h6><a style="color: antiquewhite; text-align: left;" 
-                            href='/teas/{{review[0]}}'>{{ review[0] }}</a></h6></div>
+                        <div  class="col-sm-7"><h6><a style="color: antiquewhite; text-align: left;" 
+                            href='./teas/{{ review[0] }}'>{{ review[0] }}</a></h6></div>
                             
-                        <div class='col-sm'><h5 style="text-align: right;"> {{ review[2] }} </h5></div>
-                        </div>
+                        <div class='col-sm-2'><h5 style="text-align: right;"> {{ review[2] }} </h5></div>
+                        <div class='col-sm'><h6><a class="float-right" style="color: antiquewhite; text-align: right;" 
+                            href='../newreview/{{ review[0] }}'>Review this tea</a></h6></div>
+                    </div>
                 {% endfor %}
                 </div>
             {% else %}

@@ -3,19 +3,26 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="../static/custom.css">
+
 <body style="background: url(../static/tee.jpg)" class="page-holder bg-image">
     {% if session.user_id %}
-    <nav class="navbar navbar-expand navigationbar">  
+    <nav class="navbar navbar-expand navigationbar">
         <div class="navbar-nav mr-auto">
             <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/teas">Browse teas</a>
-            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/reviews">Browse reviews</a>
-            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse users</a>
-            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new review</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/reviews">Browse
+                reviews</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/users">Browse
+                users</a>
+            <a style="color: antiquewhite; font-size: 20px;" class="nav-item nav-link px-3" href="/newreview">Post a new
+                review</a>
         </div>
         <div class="navbar-nav">
-            <p style="color: antiquewhite; font-size: 18px; margin-right: -0.6rem; padding-top: 8px;" class="nav-item" >Logged in as: </p>
-            <a style="color: antiquewhite; font-size: 18px;" class="nav-item nav-link px-3" href='/users/{{session.user_id}}'>{{session.user_name}} </a>
-            <a class="nav-item px-2" style="color: antiquewhite;" href="/logout"><span class="fa fa-sign-out" style="font-size: 20px;color:antiquewhite; padding-top: 11px;">Logout</span></a>
+            <p style="color: antiquewhite; font-size: 18px; margin-right: -0.6rem; padding-top: 8px;" class="nav-item">
+                Logged in as: </p>
+            <a style="color: antiquewhite; font-size: 18px;" class="nav-item nav-link px-3"
+                href='/users/{{session.user_id}}'>{{session.user_name}} </a>
+            <a class="nav-item px-2" style="color: antiquewhite;" href="/logout"><span class="fa fa-sign-out"
+                    style="font-size: 20px;color:antiquewhite; padding-top: 11px;">Logout</span></a>
         </div>
     </nav>
     {% endif %}
@@ -25,12 +32,12 @@
                 {% if session.user_id %}
                 <div class="form-style" style="overflow-wrap: break-word;">
                     <div class="row">
-                        
+
                         {% if isReviewer == true  %}
                         <div class="col-md d-flex justify-content-end">
                             <form method="POST" action="{{ targetreview[0][0] }}/delete">
                                 <button onclick="return confirm('Are you sure you want to delete this review?');"
-                                    class="nicer-button float-right" type="submit">Delete</button>
+                                    class="small-nicer-button float-right" type="submit">Delete</button>
                             </form>
                         </div>
                         {% endif %}
@@ -51,7 +58,85 @@
                         <br>Score {{ targetreview[0][4] }} / 10
                         <br>Review: {{ targetreview[0][5] }}</h6>
 
+
+                    <div class="col-md d-flex justify-content-end">
+                        <div><br>
+                            <p>{{ targetreview[0][8] }} users liked this review.</p>
+                        </div>
+                    </div>
+                    {% if has_liked == true  %}
+                    <div class="col-md d-flex justify-content-end">
+                        <form method="POST" action="{{ targetreview[0][0] }}/unlike">
+                            <button class="small-nicer-button float-right" type="submit">Unlike.</button>
+                        </form>
+                    </div>
+
+                    {% else %}
+                    <div class="col-md d-flex justify-content-end">
+                        <form method="POST" action="{{ targetreview[0][0] }}/like">
+                            <button class="small-nicer-button float-right" type="submit">Like this review.</button>
+                        </form>
+                    </div>
+
+                    {% endif %}
+
+                    <!--Comment functionality-->
+                    <span id="showcomment" style="display: none;">
+                        <form action="{{ targetreview[0][0] }}/comments" method="POST">
+
+                            <p>Comment:</p>
+                            <textarea class="form-control input-sm" minlength="8" maxlength="600" rows="7"
+                                name="commenttext"></textarea>
+                            </br>
+                            <button style="margin-bottom: 20px;" class="small-nicer-button" type="submit">Post
+                                comment</button>
+                        </form>
+                    </span>
+
+                    <button style="margin-bottom: 20px;" class="small-nicer-button" onclick="showcomment()"
+                        id="postcommentbutton">Comment review</button>
+                    <!--Comment functionality ends-->
+
+
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    <div class=flashes>
+                        {% for category, message in messages %}
+                        <p class="{{ category }}" style="padding-top: 10px;">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
                 </div>
+
+                <h4>Comments:</h4>
+
+                {% for comment in comment_list %}
+                <div class="form-style">
+                    <div class="row">
+                        <div class="col-sm">
+                            <p>Comment by <a style="color: antiquewhite;"
+                                    href='/users/{{comment[2]}}'>{{ comment[4] }}</a></p>
+                        </div>
+
+                        {% if comment[2]== session.user_id %}
+                        <div class="col-sm float-right">
+                            <form method="POST" action="{{ targetreview[0][0] }}/comments/{{comment[0]}}">
+                                <button onclick="return confirm('Are you sure you want to delete this comment?');"
+                                    class="small-nicer-button float-right" type="submit">Delete</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                        <br>
+                    </div>
+
+                    <div>
+                        <p style="overflow-wrap: break-word">{{ comment[3] }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
 
                 {% else %}
                 <div class="form-style">
@@ -65,4 +150,23 @@
         </div>
     </div>
     </div>
+
+
+    <script>
+        function showcomment() {
+
+            var moreText = document.getElementById("showcomment");
+            var btnText = document.getElementById("postcommentbutton");
+
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                btnText.innerHTML = "Cancel comment";
+
+            } else {
+                moreText.style.display = "none";
+                btnText.innerHTML = "Comment review";
+
+            }
+        }
+    </script>
 </body>

@@ -25,7 +25,14 @@
             {% if session.user_id %}
                 {% if targetuser %}
                 <div class="form-style">
-                    
+                    {% if session.user_id == targetuser[0][8] %}
+                    <div class="col-md d-flex justify-content-end">
+                        <form method="POST" action="../users/{{targetuser[0][8]}}/delete">
+                            <button onclick="return confirm('Are you sure you want to delete your account? This action is permanent and will remove all your reviews, comments and likes.');"
+                                class="small-nicer-button float-right" type="submit">Delete your account</button>
+                        </form>
+                    </div>
+                    {% endif %}
                     <h4 style=" text-align: center; margin-bottom: -10px; margin-top: -5px;">
                         Statistics for {{ targetuser[0][0] }} </h4>
                         <br>
@@ -64,6 +71,14 @@
                 </div>
                 {% else %}
                 <div class="form-style">
+                    {% if session.user_id == user_id %}
+                    <div class="col-md d-flex justify-content-end">
+                        <form method="POST" action="../users/{{user_id}}/delete">
+                            <button onclick="return confirm('Are you sure you want to delete your account? This action is permanent and will remove all your reviews, comments and likes.');"
+                                class="small-nicer-button float-right" type="submit">Delete your account</button>
+                        </form>
+                    </div>
+                    {% endif %}
                     <form action="/users">
                         <button class="nicer-button" type="submit">Return</button>
                     </form>

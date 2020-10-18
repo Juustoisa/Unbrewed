@@ -27,10 +27,9 @@
                     
                     <h2 style="text-align: center;">Post a new review!</h2>
                     <h6 style="text-align: center;"> Fields marked with * are mandatory, be as specific as you can.</h6>
-
                     <form action="/newreview" method="POST">
                         <p>*Tea name:<br>
-                        <input class="form-control input-sm" type="text" name="teaname" minlength="5" maxlength="100" required></p>
+                        <input class="form-control input-sm" type="text" value="{{teaname}}" name="teaname" minlength="5" maxlength="100" required></p>
                         </br>
                         <p style="margin-top: -30px; margin-bottom: -15px;">Link to shop:<br>
                             <input class="form-control input-sm" type="url" name="shop"></p>
